@@ -57,5 +57,15 @@ class usuariosController{
             res.status(500).send(e);
         }
     }
+
+    async login(req, res) {
+        try {
+            const { nombre_usuario, contraseña } = req.body;
+            const usuario = await usuariosModel.authenticate(nombre_usuario, contraseña);
+            res.status(200).json(usuario);
+        } catch (e) {
+            res.status(401).json({ error: e.message });
+        }
+    }
 }
 export default new usuariosController();

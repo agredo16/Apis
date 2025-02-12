@@ -77,5 +77,24 @@ class usuariosModel{
         const colUsuarios = dbClient.db.collection('Usuarios');
         return await colUsuarios.findOne({nombre_usuario});
     }
+
+
+    async authenticate(nombre_usuario, contraseña) {
+        const colUsuarios = dbClient.db.collection('Usuarios');
+        const usuario = await colUsuarios.findOne({ nombre_usuario });
+
+        if (!usuario) {
+            throw new Error('Nombre de usuario no encontrado');
+        }
+
+        const contraseñaValida = await bcrypt.compare(contraseña, usuario.contraseña);
+        if (!contraseñaValida) {
+            throw new Error('Contraseña incorrecta');
+        }
+
+        // Devuelve el usuario sin la contraseña
+        const { contraseña: _, ...usuarioSinContraseña } = usuario;
+        return usuarioSinContraseña;
+    }
 }
 export default new usuariosModel;
