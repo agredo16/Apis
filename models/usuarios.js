@@ -1,5 +1,5 @@
 import dbClient from "../config/dbClient.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { ObjectId } from "mongodb"; // Importar ObjectId desde el cliente de MongoDB
 
 
@@ -70,12 +70,12 @@ class usuariosModel{
             return await colUsuarios.findOne({_id: new ObjectId(id)});
         }
     async findByEmail(correo){
-        const coulUsuarios = dbClient.db.collection('Usuarios');
-        return await coulUsuarios.findOne({correo});
+        const colUsuarios = dbClient.db.collection('Usuarios');
+        return await colUsuarios.findOne({correo});
     }
-    async findByusername(nombre_usuario){
-        const coulUsuarios = dbClient.db.collection('Usuarios');
-        return await coulUsuarios.findOne({nombre_usuario});
+    async findByUsername(nombre_usuario){
+        const colUsuarios = dbClient.db.collection('Usuarios');
+        return await colUsuarios.findOne({nombre_usuario});
     }
 }
 export default new usuariosModel;
