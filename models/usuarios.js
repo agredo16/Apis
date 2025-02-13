@@ -93,7 +93,11 @@ class usuariosModel{
             throw new Error('Contraseña incorrecta');
         }
         // Generar un token JWT
-    const token = jwt.sign({ id: usuario._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(
+        { id: usuario._id },
+         process.env.JWT_SECRET
+         , { expiresIn: '1h' }
+        );
 
         // Devuelve el usuario sin la contraseña
         const { contraseña: _, ...usuarioSinContraseña } = usuario;
