@@ -1,5 +1,6 @@
 import dbClient from "../config/dbClient.js";
 import bcrypt from "bcryptjs";
+import jwt from 'jsonwebtoken'
 import { ObjectId } from "mongodb"; // Importar ObjectId desde el cliente de MongoDB
 
 
@@ -91,10 +92,12 @@ class usuariosModel{
         if (!contraseñaValida) {
             throw new Error('Contraseña incorrecta');
         }
+        // Generar un token JWT
+    const token = jwt.sign({ id: usuario._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // Devuelve el usuario sin la contraseña
         const { contraseña: _, ...usuarioSinContraseña } = usuario;
-        return usuarioSinContraseña;
+        return usuarioSinContraseña, token;
     }
 }
 export default new usuariosModel();

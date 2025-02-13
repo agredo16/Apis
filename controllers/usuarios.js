@@ -62,8 +62,8 @@ class usuariosController{
     async login(req, res) {
         try {
             const { nombre_usuario, contraseña } = req.body;
-            const usuario = await usuariosModel.authenticate(nombre_usuario, contraseña);
-            res.status(200).json(usuario);
+            const {usuario, token} = await usuariosModel.authenticate(nombre_usuario, contraseña);
+            res.status(200).json(usuario, token);
         } catch (e) {
             res.status(401).json({ error: e.message });
         }
