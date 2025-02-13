@@ -15,9 +15,14 @@ app.use(express.json()); //Permite que la aplicacion analice el cuerpo de las so
 
 dbClient.conectarDB();
 
+// Ruta raíz
+app.get('/', (_req, res) => {
+    res.send('¡Bienvenido a mi API!');
+});
+
 app.use('/usuarios', routesusuarios);
 // Middleware de manejo de errores
-app.use((err, req, res, )=>{
+app.use((err, _req, res,next)=>{
     console.error(err.stack); // Registra el error en la consola
     res.status(500).json({error: 'Algo salio mal!'});
 })
