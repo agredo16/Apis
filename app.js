@@ -17,14 +17,14 @@ dbClient.conectarDB();
 
 app.use('/usuarios', routesusuarios);
 // Middleware de manejo de errores
-app.use((err, req, res, next)=>{
+app.use((err, req, res, )=>{
     console.error(err.stack); // Registra el error en la consola
     res.status(500).json({error: 'Algo salio mal!'});
 })
 
 try {
     const PORT = process.env.PORT || 3000;
-    app.listen(PORT, ()=> console.log('Servidor activo en el puerto'+PORT))
+    app.listen(PORT, ()=> console.log(`Servidor activo en el puerto ${PORT}`))
 } catch (e){
     console.log(e);
 

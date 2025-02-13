@@ -7,7 +7,8 @@ class usuariosController{
 
    async create(req,res){
         try{
-            const data = usuariosModel.create(req.body);
+            const data = await usuariosModel.create(req.body);
+
             res.status(201).json(data);
 
         }catch(e){

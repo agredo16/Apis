@@ -97,4 +97,4 @@ class usuariosModel{
         return usuarioSinContraseña;
     }
 }
-export default new usuariosModel;
+export default new usuariosModel();
