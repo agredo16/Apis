@@ -63,7 +63,7 @@ class usuariosController{
         try {
             const { nombre_usuario, contraseña } = req.body;
             const {usuario, token} = await usuariosModel.authenticate(nombre_usuario, contraseña);
-            res.status(200).json(usuario, token);
+            res.status(200).json({usuario,token});
         } catch (e) {
             res.status(401).json({ error: e.message });
         }

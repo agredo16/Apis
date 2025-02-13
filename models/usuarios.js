@@ -101,7 +101,8 @@ class usuariosModel{
 
         // Devuelve el usuario sin la contraseña
         const { contraseña: _, ...usuarioSinContraseña } = usuario;
-        return usuarioSinContraseña, token;
+        return { usuario: usuarioSinContraseña, token };
+
     }
 }
 export default new usuariosModel();
