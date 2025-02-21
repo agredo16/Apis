@@ -1,7 +1,7 @@
 {
   "name": "mongodb-web",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "start": "node app.js",
@@ -19,6 +19,7 @@
     "express": "^4.21.2",
     "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.13.0"
+    "mongodb": "^6.13.1",
+    "mongoose": "^8.10.1"
   }
 }

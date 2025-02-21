@@ -1,12 +1,13 @@
 import express from 'express';
-const route = express.Router();
 import usuarioController  from '../controllers/usuarios.js';
 
-route.post('/', usuarioController.create);
-route.get('/:id', usuarioController.getOne);
-route.get('/', usuarioController.getAll);
-route.put('/:id', usuarioController.update);
-route.delete('/:id', usuarioController.delete);
-route.post('/login', usuarioController.login); // Ruta para el login
+const router = express.Router();
 
-export default route; 
+router.post('/', usuarioController.create);
+router.get('/:id', usuarioController.getOne);
+router.get('/', usuarioController.getAll);
+router.put('/:id', usuarioController.update);
+router.delete('/:id', usuarioController.delete);
+router.post('/login', usuarioController.login); // Ruta para el login
+
+export default router; 
