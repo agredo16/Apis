@@ -1,13 +1,13 @@
-import express from 'express';
-import usuarioController  from '../controllers/usuarios.js';
+import express from "express";
+import usuarios from "../controllers/usuarios.js";
 
 const router = express.Router();
 
-router.post('/', usuarioController.create);
-router.get('/:id', usuarioController.getOne);
-router.get('/', usuarioController.getAll);
-router.put('/:id', usuarioController.update);
-router.delete('/:id', usuarioController.delete);
-router.post('/login', usuarioController.login); // Ruta para el login
+router.post("/registro", usuarios.create);
+router.post("/login", usuarios.login);  // 🔹 Nueva ruta de login
+router.get("/", usuarios.getAll);
+router.get("/:id", usuarios.getById);
+router.put("/:id", usuarios.update);
+router.delete("/:id", usuarios.delete);
 
-export default router; 
+export default router;

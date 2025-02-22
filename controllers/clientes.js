@@ -1,6 +1,7 @@
-import Cliente from "../models/cliente.js";  
+import Cliente from "../models/cliente.js";
 
-const clientesController = {
+
+const clientes = {
     async create(req, res) {
         try {
             const nuevoCliente = new Cliente(req.body);
@@ -13,7 +14,7 @@ const clientesController = {
 
     async getAll(_req, res) {
         try {
-            const clientes = await Cliente.find();  
+            const clientes = await Cliente.find();
             res.json(clientes);
         } catch (error) {
             res.status(500).json({ error: "Error al obtener clientes" });
@@ -32,9 +33,9 @@ const clientesController = {
 
     async update(req, res) {
         try {
-            const cliente = await Cliente.findByIdAndUpdate(req.params.id, req.body, { new: true });
-            if (!cliente) return res.status(404).json({ error: "Cliente no encontrado" });
-            res.json(cliente);
+            const clienteActualizado = await Cliente.findByIdAndUpdate(req.params.id, req.body, { new: true });
+            if (!clienteActualizado) return res.status(404).json({ error: "Cliente no encontrado" });
+            res.json(clienteActualizado);
         } catch (error) {
             res.status(500).json({ error: "Error al actualizar cliente" });
         }
@@ -42,13 +43,13 @@ const clientesController = {
 
     async delete(req, res) {
         try {
-            const cliente = await Cliente.findByIdAndDelete(req.params.id);
-            if (!cliente) return res.status(404).json({ error: "Cliente no encontrado" });
-            res.json({ message: "Cliente eliminado correctamente" });
+            const clienteEliminado = await Cliente.findByIdAndDelete(req.params.id);
+            if (!clienteEliminado) return res.status(404).json({ error: "Cliente no encontrado" });
+            res.json({ mensaje: "Cliente eliminado correctamente" });
         } catch (error) {
             res.status(500).json({ error: "Error al eliminar cliente" });
         }
     }
 };
 
-export default clientesController;  // ✅ Se exporta con otro nombre para evitar conflicto
+export default clientes;

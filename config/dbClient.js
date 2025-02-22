@@ -1,26 +1,29 @@
-import dotenv from 'dotenv';
-dotenv.config();
 import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
 
-console.log('MONGO_URI en dbClient:', process.env.MONGO_URI);
+dotenv.config();
 
-class dbClient {
-    constructor() {
-        if (!process.env.MONGO_URI) {
-            throw new Error("❌ ERROR: MONGO_URI no está definido");
-        }
-        this.client = new MongoClient(process.env.MONGO_URI);
-    }
+const uri = process.env.MONGO_URI;
+const client = new MongoClient(uri);
 
-    async conectarDB() {
-        try {
-            await this.client.connect();
-            this.db = this.client.db('registroUsuarios');
-            console.log("✅ Conectado al servidor de base de datos");
-        } catch (e) {
-            console.error("❌ Error al conectar a la base de datos:", e);
-        }
+let db;
+
+async function conectarDB() {
+    try {
+        await client.connect();
+        db = client.db(process.env.DB_NAME);
+        console.log("✅ Conectado a MongoDB correctamente");
+    } catch (error) {
+        console.error("Error al conectar a MongoDB:", error);
+        process.exit(1); // Detén la aplicación si no se puede conectar
     }
 }
 
-export default new dbClient();
+async function getDB() {
+    if (!db) {
+        await conectarDB();
+    }
+    return db;
+}
+
+export { conectarDB, getDB };
