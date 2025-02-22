@@ -20,11 +20,12 @@ conectarDB()
         app.use("/clientes", clientes);
         app.use("/usuarios", usuarios);
 
-        // Iniciar el servidor
-        const PORT = process.env.PORT || 5000;
-        app.listen(PORT, () => {
-            console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-        });
+        
+// Iniciar el servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Servidor corriendo en http://0.0.0.0:${PORT}`);
+});
     })
     .catch((error) => {
         console.error("❌ No se pudo conectar a MongoDB:", error);
