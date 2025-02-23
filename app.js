@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { conectarDB } from "./config/dbClient.js"; // Importamos conectarDB y getDB
+import { conectarDB , getDB} from "./config/dbClient.js"; // Importamos conectarDB y getDB
 import clientes from "./routes/clientes.js";
 import usuarios from "./routes/usuarios.js";
 
